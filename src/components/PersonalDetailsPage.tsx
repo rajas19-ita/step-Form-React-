@@ -202,7 +202,7 @@ const PersonalDetailsPage: React.FC<PersomalProps> = ({
                     handleSubmit();
                 }}
             >
-                Next
+                Next Step
             </button>
         </div>
     );
