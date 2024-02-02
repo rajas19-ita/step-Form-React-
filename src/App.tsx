@@ -32,6 +32,10 @@ const App: React.FC = () => {
         expYear: "",
         cvv: "",
     });
+    const handleSubmit = async (_details: PaymentDetails) => {
+        window.location.reload();
+        alert("Form Submitted successfully!");
+    };
 
     const renderPage = () => {
         switch (page) {
@@ -40,9 +44,7 @@ const App: React.FC = () => {
                     <PersonalDetailsPage
                         details={personalDetails}
                         setDetails={setPersonalDetails}
-                        onNext={() => {
-                            setPage(PAGE.ADDRESS);
-                        }}
+                        onNext={() => setPage(PAGE.ADDRESS)}
                     />
                 );
             case PAGE.ADDRESS:
@@ -50,12 +52,8 @@ const App: React.FC = () => {
                     <AddressDetailsPage
                         details={addressDetails}
                         setDetails={setAddressDetails}
-                        onNext={() => {
-                            setPage(PAGE.PAYMENT);
-                        }}
-                        onBack={() => {
-                            setPage(PAGE.PERSONAL);
-                        }}
+                        onNext={() => setPage(PAGE.PAYMENT)}
+                        onBack={() => setPage(PAGE.PERSONAL)}
                     />
                 );
             case PAGE.PAYMENT:
@@ -63,14 +61,8 @@ const App: React.FC = () => {
                     <PaymentDetailsPage
                         details={paymentDetails}
                         setDetails={setPaymentDetails}
-                        onBack={() => {
-                            setPage(PAGE.ADDRESS);
-                        }}
-                        onSubmit={(details) => {
-                            console.log(personalDetails);
-                            console.log(addressDetails);
-                            console.log(details);
-                        }}
+                        onBack={() => setPage(PAGE.ADDRESS)}
+                        onSubmit={handleSubmit}
                     />
                 );
         }
